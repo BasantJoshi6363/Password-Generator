@@ -21,7 +21,10 @@ generateButton.addEventListener("click", () => {
     if (includeNumbers.checked) finalStr += '0123456789';
     if (includeSymbols.checked) finalStr += '!@#$%^&*()_+-=[]{}|;:,.<>?';
     if (finalStr === '') {
-        error.innerHTML = "*Atleast check one options"
+        error.innerHTML = "* At least check one options",
+        alert("choose  at least one option")
+        passwordOutput.innerText = ""
+        return;
     }
 
     let password = '';
