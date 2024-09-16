@@ -1,55 +1,39 @@
-const btn = document.getElementById("genPass")
-let display = document.getElementById("display")
-let slider = document.getElementById("slider")
-let range = document.getElementById("range")
-let errorStr = document.getElementById("error")
-const upperCase = document.getElementById("uppercase")
-const LowerCase = document.getElementById("lowercase")
-const numbers = document.getElementById("numbers")
-const symbols = document.getElementById("symbol")
-const copy = document.getElementById("copy")
-const sign = document.getElementById("sign")
+const passwordOutput = document.getElementById('password-output')
+const copyButton = document.getElementById('copy-password');
+const lengthSlider = document.getElementById('password-length');
+const lengthValue = document.getElementById('length-value');
+const generateButton = document.getElementById('generate-password');
+const includeUppercase = document.getElementById('include-uppercase');
+const includeLowercase = document.getElementById('include-lowercase');
+const includeNumbers = document.getElementById('include-numbers');
+const includeSymbols = document.getElementById('include-symbols');
+const error = document.getElementById("error");
+const copied = document.getElementById("copied")
 
-
-slider.addEventListener("input", (e) => {
-    range.innerText = e.target.value
+lengthSlider.addEventListener("input", () => {
+    lengthValue.textContent = lengthSlider.value;
 })
 
-
-btn.addEventListener("click", () => {
-    const upperCaseLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    const lowerCaseLetter = "abcdefghijklmnopqrstuvwxyz"
-    const number = "0123456789"
-    const symbol = "!@#$%^&*()_+-={}:<>?"
+generateButton.addEventListener("click", () => {
     let finalStr = ""
-    let str = ""
-    if (upperCase.checked) {
-        finalStr += upperCaseLetter
-    }
-    if (LowerCase.checked) {
-        finalStr += lowerCaseLetter
-    }
-    if (numbers.checked) {
-        finalStr += number
-    }
-    if (symbols.checked) {
-        finalStr += symbol
-    }
-    if (finalStr === "") {
-        errorStr.innerText = " * please  select at least one option"
-        display.innerHTML = ""
+    if (includeUppercase.checked) finalStr += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeLowercase.checked) finalStr += 'abcdefghijklmnopqrstuvwxyz';
+    if (includeNumbers.checked) finalStr += '0123456789';
+    if (includeSymbols.checked) finalStr += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    if (finalStr === '') {
+        error.innerHTML = "*Atleast check one options"
     }
 
-    for (let i = 0; i <= slider.value; i++) {
-        let randomNum = parseInt(Math.random() * finalStr.length);
+    let password = '';
 
-        str += finalStr[randomNum];
-
+    for (let i = 0; i < lengthSlider.value; i++) {
+        let generateRandomNum = parseInt(Math.random() * finalStr.length)
+        password += finalStr[generateRandomNum];
     }
-    display.innerHTML = str
-    copy.addEventListener("click", () => {
-        window.navigator.clipboard.writeText(str)
-        sign.innerHTML = "copied!"
+    passwordOutput.innerHTML = password;
+
+    copyButton.addEventListener("click", () => {
+        window.navigator.clipboard.writeText(password)
+        copied.innerHTML = "copied!"
     })
-
 })
