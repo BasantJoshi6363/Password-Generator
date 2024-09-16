@@ -3,6 +3,7 @@
 
 ### Description
 A **simple and user-friendly password generator** built with **HTML**, **CSS**, and **JavaScript**. Customize your password by adjusting its length and choosing character types, including uppercase, lowercase, numbers, and symbols. The tool also offers a convenient copy-to-clipboard feature for easy use.
+demo : https://basantjoshi6363.github.io/Password-Generator/
 
 ### Features 🌟
 - 🎛️ **Customizable Password Length**: Easily adjust the length using a slider.
